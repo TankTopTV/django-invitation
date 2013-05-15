@@ -9,7 +9,7 @@ if getattr(settings, 'INVITATION_USE_ALLAUTH', False):
 else:
     from registration.forms import RegistrationFormTermsOfService
     reg_backend = 'registration.backends.default.DefaultBackend'
-    
+
 from invitation.views import invite, invited, register
 
 urlpatterns = patterns('',
@@ -20,9 +20,11 @@ urlpatterns = patterns('',
     url(r'^invite/$',
                 invite,
                 name='invitation_invite'),
-    url(r'^invited/(?P<invitation_key>\w+)/$', 
+    url(r'^invited/(?P<invitation_key>\w+)/$',
                 invited,
                 name='invitation_invited'),
+    url(r'^invited/.*',
+                invited),
     url(r'^register/$',
                 register,
                 { 'backend': reg_backend },
