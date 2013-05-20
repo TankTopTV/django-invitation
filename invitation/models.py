@@ -69,7 +69,7 @@ class InvitationKeyManager(models.Manager):
 
 
 class InvitationKey(models.Model):
-    key = models.CharField(_('invitation key'), max_length=40)
+    key = models.CharField(_('invitation key'), max_length=40, db_index=True)
     date_invited = models.DateTimeField(_('date invited'),
                                         auto_now_add=True)
     from_user = models.ForeignKey(User,
